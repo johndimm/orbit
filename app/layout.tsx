@@ -26,6 +26,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} antialiased`}>
         {children}
+        <footer className="pointer-events-none fixed inset-x-0 bottom-0 z-[9999] py-1 text-center text-[11px] text-slate-500">
+          © 2026 John Dimm
+        </footer>
       </body>
     </html>
   );

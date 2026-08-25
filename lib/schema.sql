@@ -1,5 +1,30 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
+-- ============================================================
+-- Row Level Security
+-- ============================================================
+-- RLS is enabled on all tables.  This app is backend-only
+-- (Next.js API routes using the service_role key), so the
+-- service role bypasses RLS automatically.  The policies below
+-- ensure that any accidental anon/authenticated requests are
+-- also permitted (adjust if you ever add auth-gated features).
+
+ALTER TABLE persons                ENABLE ROW LEVEL SECURITY;
+ALTER TABLE companies              ENABLE ROW LEVEL SECURITY;
+ALTER TABLE person_company_edges   ENABLE ROW LEVEL SECURITY;
+ALTER TABLE llm_cache              ENABLE ROW LEVEL SECURITY;
+ALTER TABLE settings               ENABLE ROW LEVEL SECURITY;
+ALTER TABLE saved_graphs           ENABLE ROW LEVEL SECURITY;
+
+-- Allow full access for the service role (used by the API)
+CREATE POLICY "service_role_all_persons"              ON persons              FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "service_role_all_companies"            ON companies            FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "service_role_all_person_company_edges" ON person_company_edges FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "service_role_all_llm_cache"            ON llm_cache            FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "service_role_all_settings"             ON settings             FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "service_role_all_saved_graphs"         ON saved_graphs         FOR ALL USING (true) WITH CHECK (true);
+
+
 CREATE TABLE IF NOT EXISTS persons (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,

@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Share2, Check, BookOpen, Loader2, Search, Brain, ImageIcon } from 'lucide-react';
+import { Share2, Check, BookOpen, Loader2, Search, Brain, ImageIcon, Home as HomeIcon, Info } from 'lucide-react';
 import Link from 'next/link';
 import Graph, { GraphNode, GraphLink } from '@/components/Graph';
 import SearchBar from '@/components/SearchBar';
@@ -410,9 +410,19 @@ function HomeContent() {
     <div className="h-screen w-screen flex flex-col bg-slate-950">
       {/* Header */}
       <header className="flex items-center justify-between px-4 py-2 border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-sm z-30">
-        <h1 className="text-lg font-semibold text-slate-100 tracking-tight">
-          Orbit
-        </h1>
+        <div className="flex items-center gap-2">
+          <a
+            href="https://johndimm.vercel.app"
+            aria-label="All apps"
+            title="All apps — John Dimm"
+            className="flex items-center justify-center rounded-lg border border-slate-700/50 bg-slate-800/50 p-2 text-slate-400 transition-colors hover:text-slate-200 hover:border-slate-600"
+          >
+            <HomeIcon className="h-4 w-4" />
+          </a>
+          <h1 className="text-lg font-semibold text-slate-100 tracking-tight">
+            Orbit
+          </h1>
+        </div>
         <div className="flex items-center gap-3">
           <SearchBar onSearch={handleSearch} disabled={loading} />
           {graphData.nodes.length > 0 && (
@@ -440,6 +450,14 @@ function HomeContent() {
           >
             <BookOpen className="h-3.5 w-3.5" />
             Services
+          </Link>
+          <Link
+            href="/about"
+            className="flex items-center gap-1.5 rounded-lg border border-slate-700/50 bg-slate-800/50 px-3 py-2 text-xs text-slate-400 transition-colors hover:text-slate-200 hover:border-slate-600"
+            title="About Orbit"
+          >
+            <Info className="h-3.5 w-3.5" />
+            About
           </Link>
           <SettingsPanel />
         </div>
