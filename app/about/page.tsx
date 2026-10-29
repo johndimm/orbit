@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Home, Github, ArrowUpRight } from 'lucide-react';
 
-const GARDEN_URL = 'https://johndimm.org';
+const GARDEN_URL = 'https://www.johndimm.org';
 const GITHUB_URL = 'https://github.com/johndimm/Careers';
 
 export const metadata = {

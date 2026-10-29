@@ -412,7 +412,7 @@ function HomeContent() {
       <header className="flex items-center justify-between px-4 py-2 border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-sm z-30">
         <div className="flex items-center gap-2">
           <a
-            href="https://johndimm.org"
+            href="https://www.johndimm.org"
             aria-label="All apps"
             title="All apps — John Dimm"
             className="flex items-center justify-center rounded-lg border border-slate-700/50 bg-slate-800/50 p-2 text-slate-400 transition-colors hover:text-slate-200 hover:border-slate-600"
